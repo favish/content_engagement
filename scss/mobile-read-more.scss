@@ -1,0 +1,40 @@
+.mobile-read-more--wrapper {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  &.mobile-read-more--wrapper--expanded {
+    .mobile-read-more--overlay {
+      display: none;
+    }
+  }
+}
+
+.mobile-read-more--overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.mobile-read-more--gradient {
+  height: 90px;
+  background: linear-gradient(
+                  180deg,
+                  rgba(255, 255, 255, 0.4),
+                  rgba(255, 255, 255, 0.6),
+                  rgba(255, 255, 255, 0.8),
+                  rgba(255, 255, 255, 0.9),
+                  rgba(255, 255, 255, 1)
+  );
+  overflow: hidden;
+}
+
+.mobile-read-more--button {
+  width: 100%;
+  padding: 5px 0;
+  border: 2px solid #d9d9d9;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #737373;
+  cursor: pointer;
+  text-align: center;
+}

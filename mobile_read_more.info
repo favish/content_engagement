@@ -1,0 +1,3 @@
+name            = Mobile Read More
+description     = Add a 'Read More' button that occludes nodes in mobile. Display full node when clicked.
+core            = 7.x
