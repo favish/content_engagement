@@ -3,9 +3,6 @@
   Drupal.behaviors.mobileReadMore = {
     attach: function (context, settings) {
 
-      // todo: restrict to full view mode
-      // todo: specify content types
-
       var pluginName = 'mobileReadMore';
       var defaults = {
         visibleMax: 768
