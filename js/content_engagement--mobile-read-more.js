@@ -63,7 +63,7 @@
         });
       };
 
-      $('.node', context).mobileReadMore();
+      $('.content_engagement--mobile-read-more', context).mobileReadMore();
     }
   };
 

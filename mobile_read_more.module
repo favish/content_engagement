@@ -1,9 +1,0 @@
-<?php
-
-/**
- * Implements template_preprocess_page()
- */
-function mobile_read_more_preprocess_page(&$vars) {
-  drupal_add_css(drupal_get_path('module', 'mobile_read_more') . '/css/mobile-read-more.css');
-  drupal_add_js(drupal_get_path('module', 'mobile_read_more') . '/js/mobile-read-more.js');
-}

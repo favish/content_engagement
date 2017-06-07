@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * Implements template_preprocess_node()
+ */
+function content_engagement_preprocess_node(&$vars) {
+  $module_name = basename(__FILE__, '.module');
+
+  // Filter nodes based on content type and view mode
+  if (variable_get($module_name . '_view_mode_' . $vars['type']) === $vars['view_mode']) {
+    $vars['classes_array'][] = $module_name . '--mobile-read-more';
+    drupal_add_css(drupal_get_path('module', $module_name) . '/css/' . $module_name . '--mobile-read-more.css');
+    drupal_add_js(drupal_get_path('module', $module_name) . '/js/' . $module_name . '--mobile-read-more.js');
+  }
+}
+
+function content_engagement_form_alter(&$form, $form_state, $form_id) {
+  if ($form_id == 'node_type_form') {
+    $module_name = basename(__FILE__, '.module');
+
+    $form[$module_name] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Content Engagement'),
+      '#collapsible' => true,
+      '#collapsed' => true,
+      '#group' => 'additional_settings',
+      '#weight' => 10,
+    );
+
+    $view_modes = content_engagement_get_node_view_modes();
+
+    $form[$module_name][$module_name . '_view_mode'] = array(
+      '#type' => 'select',
+      '#title' => t('Mobile "Read More" view mode'),
+      '#description' => t('Choose a node view mode on which to display the mobile "Read More" button for this content type.'),
+      '#default_value' => variable_get($module_name . '_view_mode_' . $form['#node_type']->type, false),
+      '#options' => array_merge(array('none' => 'None'), $view_modes),
+    );
+  }
+}
+
+/**
+ * Build array of node view modes where key is machine-name and value is label.
+ * @return array
+ */
+function content_engagement_get_node_view_modes() {
+  // Build view mode options
+  $node_info = entity_get_info('node');
+
+  return array_map(
+    function($item) {
+      return $item['label'];
+    },
+    $node_info['view modes']
+  );
+}

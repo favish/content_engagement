@@ -1,0 +1,10 @@
+<?php
+
+function content_engagement_uninstall() {
+  $module_name = basename(__FILE__, '.install');
+
+  db_delete('variable')
+    ->condition('name', $module_name .'%', 'LIKE')
+    ->execute();
+  cache_clear_all('variables', 'cache_bootstrap');
+}
